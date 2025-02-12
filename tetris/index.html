@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Tetris</title>
+    <style>
+        body {
+            margin: 0;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #fff;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .game-container {
+            display: flex;
+            gap: 20px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+        }
+
+        #game-canvas {
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            background-color: rgba(0, 0, 0, 0.3);
+        }
+
+        .side-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            min-width: 200px;
+        }
+
+        .next-piece {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 15px;
+            border-radius: 5px;
+        }
+
+        .score-board {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 15px;
+            border-radius: 5px;
+        }
+
+        h1 {
+            color: #fff;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+
+        h2 {
+            margin: 0 0 10px 0;
+            font-size: 1.2em;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .controls {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        .controls p {
+            margin: 5px 0;
+            font-size: 0.9em;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        #next-canvas {
+            background-color: rgba(0, 0, 0, 0.3);
+            border-radius: 3px;
+        }
+
+        .game-over {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.9);
+            padding: 20px 40px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .game-over button {
+            background: #4CAF50;
+            border: none;
+            padding: 10px 20px;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+            font-size: 1em;
+        }
+
+        .game-over button:hover {
+            background: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Modern Tetris</h1>
+    <div class="game-container">
+        <canvas id="game-canvas"></canvas>
+        <div class="side-panel">
+            <div class="next-piece">
+                <h2>Next Piece</h2>
+                <canvas id="next-canvas"></canvas>
+            </div>
+            <div class="score-board">
+                <h2>Score</h2>
+                <p id="score">0</p>
+                <h2>Level</h2>
+                <p id="level">1</p>
+                <h2>Lines</h2>
+                <p id="lines">0</p>
+            </div>
+            <div class="controls">
+                <h2>Controls</h2>
+                <p>← → : Move</p>
+                <p>↑ : Rotate</p>
+                <p>↓ : Soft Drop</p>
+                <p>Space : Hard Drop</p>
+                <p>P : Pause</p>
+            </div>
+        </div>
+    </div>
+    <div class="game-over" id="game-over">
+        <h2>Game Over</h2>
+        <p>Score: <span id="final-score">0</span></p>
+        <button onclick="resetGame()">Play Again</button>
+    </div>
+    <script src="tetris.js"></script>
+</body>
+</html>
